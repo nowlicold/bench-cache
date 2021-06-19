@@ -1,6 +1,6 @@
 package com.bench.cache.local;
 
-import com.bench.cache.local.object.RefreshableCacheObject;
+import com.yuan.common.cache.local.RefreshableCacheObject;
 
 import java.util.List;
 

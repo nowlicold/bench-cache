@@ -42,6 +42,11 @@
             <artifactId>bench-lang-base</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.yuan.common</groupId>
+            <artifactId>common-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
