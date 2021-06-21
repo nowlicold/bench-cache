@@ -4,6 +4,7 @@
  */
 package com.bench.cache.local;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,12 @@ import java.util.stream.Collectors;
 import com.bench.lang.base.error.enums.CommonErrorCodeEnum;
 import com.bench.lang.base.exception.BenchRuntimeException;
 import com.yuan.common.cache.local.RefreshableCacheObject;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import org.springframework.scheduling.support.CronTrigger;
 
 import javax.annotation.PostConstruct;
 
@@ -27,7 +33,7 @@ import javax.annotation.PostConstruct;
  * @version $Id: AbstractRefreshableCacheComponent.java, v 0.1 2015年9月16日 下午5:41:43 cold Exp $
  */
 public abstract class AbstractRefreshableCacheComponent<T extends RefreshableCacheObject<K, V>, K, V extends Comparable<V>>
-		implements RefreshableCacheComponent<T, K, V> {
+		implements RefreshableCacheComponent<T, K, V>, SchedulingConfigurer {
 
 	private static final int MAX_CACHE_SIZE = 200000;
 
@@ -169,10 +175,29 @@ public abstract class AbstractRefreshableCacheComponent<T extends RefreshableCac
 	 * 
 	 * @see com.bench.platform.scheduler.task.Task#execute()
 	 */
-	@Scheduled(fixedRate=5000)
+	@PostConstruct
 	public void execute() {
 		// TODO Auto-generated method stub
 		refreshCache();
+	}
+
+	/**
+	 * 默认为0/10 * * * * ?  如需特殊定制 子类覆盖此方法
+	 * @return
+	 */
+	public String getCron(){
+		//默认10秒执行一次
+		return "0/10 * * * * ? ";
+	}
+
+	@Override
+	public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
+		scheduledTaskRegistrar.addTriggerTask(() -> {
+			refreshCache();
+		}, triggerContext -> {
+			return new CronTrigger(getCron()).nextExecutionTime(triggerContext);
+		});
+
 	}
 
 	/**
@@ -303,12 +328,6 @@ public abstract class AbstractRefreshableCacheComponent<T extends RefreshableCac
 		return objectList.size();
 	}
 
-	@PostConstruct
-	public void initializing() {
-		// TODO Auto-generated method stub
-		refreshCache();
-		initialized = true;
-	}
 
 	@Override
 	public int refreshAll() {
