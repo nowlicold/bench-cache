@@ -3,21 +3,15 @@
  * Copyright (c) 2005-2009 All Rights Reserved.
  */
 package com.bench.cache.local;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-
-import com.bench.lang.base.error.enums.CommonErrorCodeEnum;
-import com.bench.lang.base.exception.BenchRuntimeException;
 import com.yuan.common.cache.local.RefreshableCacheObject;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.scheduling.annotation.Scheduled;
+import com.yuan.common.exception.BenchRuntimeException;
+import com.yuan.common.exception.CommonErrorEnum;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
@@ -231,7 +225,7 @@ public abstract class AbstractRefreshableCacheComponent<T extends RefreshableCac
 		}
 		// 增量会偏大，先不管
 		if (objectList.size() > MAX_CACHE_SIZE) {
-			throw new BenchRuntimeException(CommonErrorCodeEnum.SYSTEM_ERROR, "缓存记录数过大，超过" + MAX_CACHE_SIZE + ",实际：" + objectList.size());
+			throw new BenchRuntimeException(CommonErrorEnum.SYSTEM_ERROR, "缓存记录数过大，超过" + MAX_CACHE_SIZE + ",实际：" + objectList.size());
 		}
 		cacheChange = objectList.size() > 0;
 

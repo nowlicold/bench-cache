@@ -7,6 +7,7 @@ import com.bench.cache.enums.AppCacheClientEnum;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @autor cold
  * @DATE 2021/6/21 20:03
  **/
+@Service
 public class AppCacheComponentImpl implements AppCacheComponent {
     /**
      * 默认是redis，如有其它通道，在配置文件中设置该值
