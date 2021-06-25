@@ -22,8 +22,8 @@ public class AppCacheComponentImpl implements AppCacheComponent {
     /**
      * 默认是redis，如有其它通道，在配置文件中设置该值
      */
-    @Value("appCache.appCacheCode")
-    private AppCacheClientEnum appCacheClient = AppCacheClientEnum.REDIS_CLIENT;
+    @Value("${appCache.appCacheClient:REDIS_CLIENT}")
+    private AppCacheClientEnum appCacheClient;
     @Autowired
     private List<InnerAppCacheClient> innerAppCacheClientList;
 
