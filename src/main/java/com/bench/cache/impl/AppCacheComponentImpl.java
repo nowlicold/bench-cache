@@ -80,4 +80,8 @@ public class AppCacheComponentImpl implements AppCacheComponent {
     public boolean exists(AppCacheAreaName area, String key) {
         return getInnerAppCacheClient().exists(area, key);
     }
+
+    public static void main(String[] args) {
+        System.out.println("test");
+    }
 }

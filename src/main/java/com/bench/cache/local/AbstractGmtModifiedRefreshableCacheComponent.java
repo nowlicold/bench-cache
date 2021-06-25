@@ -4,7 +4,7 @@
  */
 package com.bench.cache.local;
 
-import com.yuan.common.cache.local.GmtModifiedRefreshableCacheObject;
+import com.bench.common.cache.local.GmtModifiedRefreshableCacheObject;
 
 import java.util.Date;
 

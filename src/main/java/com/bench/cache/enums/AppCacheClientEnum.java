@@ -1,6 +1,6 @@
 package com.bench.cache.enums;
 
-import com.yuan.common.enums.EnumBase;
+import com.bench.common.enums.EnumBase;
 
 /**
  * @className AppCacheClientEnum
