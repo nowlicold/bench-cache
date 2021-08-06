@@ -13,7 +13,9 @@
         <artifactId>bench-dependency</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
     <dependencies>
 
         <dependency>
@@ -25,6 +27,10 @@
         <dependency>
             <groupId>com.bench.lang</groupId>
             <artifactId>bench-lang-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bench.common</groupId>
+            <artifactId>common-model</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
@@ -46,6 +52,26 @@
                 <configuration>
                     <skip>false</skip>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

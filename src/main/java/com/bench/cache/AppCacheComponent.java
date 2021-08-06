@@ -1,5 +1,7 @@
 package com.bench.cache;
 
+import com.bench.common.cache.app.AppCacheAreaName;
+
 import java.util.concurrent.TimeUnit;
 
 /**

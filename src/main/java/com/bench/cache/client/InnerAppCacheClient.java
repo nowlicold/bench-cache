@@ -4,8 +4,8 @@
  */
 package com.bench.cache.client;
 
-import com.bench.cache.AppCacheAreaName;
 import com.bench.cache.enums.AppCacheClientEnum;
+import com.bench.common.cache.app.AppCacheAreaName;
 
 import java.util.concurrent.TimeUnit;
 

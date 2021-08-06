@@ -1,8 +1,8 @@
 package com.bench.cache.client.impl;
 
-import com.bench.cache.AppCacheAreaName;
 import com.bench.cache.client.InnerAppCacheClient;
 import com.bench.cache.enums.AppCacheClientEnum;
+import com.bench.common.cache.app.AppCacheAreaName;
 import com.bench.lang.base.string.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

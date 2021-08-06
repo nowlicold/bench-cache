@@ -3,20 +3,22 @@
  * Copyright (c) 2005-2009 All Rights Reserved.
  */
 package com.bench.cache.local;
+
+import com.bench.common.cache.local.RefreshableCacheObject;
+import com.bench.common.exception.BenchRuntimeException;
+import com.bench.common.exception.CommonErrorEnum;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import org.springframework.scheduling.support.CronTrigger;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-import com.bench.common.cache.local.RefreshableCacheObject;
-import com.bench.common.exception.BenchRuntimeException;
-import com.bench.common.exception.CommonErrorEnum;
-import org.springframework.scheduling.annotation.SchedulingConfigurer;
-import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.scheduling.support.CronTrigger;
-
-import javax.annotation.PostConstruct;
 
 /**
  * 基于loader的修改时间全内存缓存<br>
@@ -27,7 +29,7 @@ import javax.annotation.PostConstruct;
  * @version $Id: AbstractRefreshableCacheComponent.java, v 0.1 2015年9月16日 下午5:41:43 cold Exp $
  */
 public abstract class AbstractRefreshableCacheComponent<T extends RefreshableCacheObject<K, V>, K, V extends Comparable<V>>
-		implements RefreshableCacheComponent<T, K, V>, SchedulingConfigurer {
+		implements RefreshableCacheComponent<T, K, V>, SchedulingConfigurer, InitializingBean {
 
 	private static final int MAX_CACHE_SIZE = 200000;
 
@@ -169,10 +171,14 @@ public abstract class AbstractRefreshableCacheComponent<T extends RefreshableCac
 	 * 
 	 * @see com.bench.platform.scheduler.task.Task#execute()
 	 */
-	@PostConstruct
 	public void execute() {
 		// TODO Auto-generated method stub
 		refreshCache();
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		execute();
 	}
 
 	/**

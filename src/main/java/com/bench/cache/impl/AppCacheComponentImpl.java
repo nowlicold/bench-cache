@@ -1,9 +1,9 @@
 package com.bench.cache.impl;
 
-import com.bench.cache.AppCacheAreaName;
 import com.bench.cache.AppCacheComponent;
 import com.bench.cache.client.InnerAppCacheClient;
 import com.bench.cache.enums.AppCacheClientEnum;
+import com.bench.common.cache.app.AppCacheAreaName;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
