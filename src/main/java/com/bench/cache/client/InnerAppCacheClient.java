@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * 内部cache客户端
  * 
- * @author chenbug
+ * @author cold
  * 
- * @version $Id: InnerAppCacheClient.java, v 0.1 2010-5-29 下午04:31:34 chenbug Exp $
+ * @version $Id: InnerAppCacheClient.java, v 0.1 2010-5-29 下午04:31:34 cold Exp $
  */
 public interface InnerAppCacheClient {
 	public boolean support(AppCacheClientEnum appCacheClient);
